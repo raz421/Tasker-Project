@@ -1,10 +1,22 @@
-export default function Search() {
+import { useState } from "react";
+
+export default function Search({ onSearch }) {
+  const [text, setText] = useState("");
   return (
     <div className="p-2 flex justify-end">
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          onSearch(text);
+        }}
+      >
         <div className="flex">
           <div className="relative overflow-hidden rounded-lg text-gray-50 md:min-w-[380px] lg:min-w-[440px]">
             <input
+              value={text}
+              onChange={(e) => {
+                setText(e.target.value);
+              }}
               type="search"
               id="search-dropdown"
               className="z-20 block w-full bg-gray-800 px-4 py-2 pr-10 focus:outline-none"

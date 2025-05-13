@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function AddTaskModal({ onAdd, taskToUpdate, onClose }) {
-  const [tasks, setTask] = useState(
+  const [task, setTask] = useState(
     taskToUpdate || {
       id: crypto.randomUUID(),
       title: "",
@@ -18,7 +18,7 @@ export default function AddTaskModal({ onAdd, taskToUpdate, onClose }) {
       value = value.split(",");
     }
     setTask({
-      ...tasks,
+      ...task,
 
       [name]: value,
     });
@@ -39,7 +39,7 @@ export default function AddTaskModal({ onAdd, taskToUpdate, onClose }) {
               className="block w-full rounded-md bg-[#2D323F] px-3 py-2.5"
               type="text"
               name="title"
-              value={tasks.title}
+              value={task.title}
               onChange={handleChange}
               id="title"
               required
@@ -51,7 +51,7 @@ export default function AddTaskModal({ onAdd, taskToUpdate, onClose }) {
               className="block min-h-[120px] w-full rounded-md bg-[#2D323F] px-3 py-2.5 lg:min-h-[180px]"
               type="text"
               name="description"
-              value={tasks.description}
+              value={task.description}
               onChange={handleChange}
               id="description"
               required
@@ -64,7 +64,7 @@ export default function AddTaskModal({ onAdd, taskToUpdate, onClose }) {
                 className="block w-full rounded-md bg-[#2D323F] px-3 py-2.5"
                 type="text"
                 name="tags"
-                value={tasks.tags}
+                value={task.tags}
                 onChange={handleChange}
                 id="tags"
                 required
@@ -75,7 +75,7 @@ export default function AddTaskModal({ onAdd, taskToUpdate, onClose }) {
               <select
                 className="block w-full cursor-pointer rounded-md bg-[#2D323F] px-3 py-2.5"
                 name="priority"
-                value={tasks.priority}
+                value={task.priority}
                 onChange={handleChange}
                 id="priority"
                 required
@@ -95,7 +95,7 @@ export default function AddTaskModal({ onAdd, taskToUpdate, onClose }) {
             onClick={(e) => {
               e.preventDefault();
 
-              onAdd(tasks, isTask);
+              onAdd(task, isTask);
             }}
           >
             save

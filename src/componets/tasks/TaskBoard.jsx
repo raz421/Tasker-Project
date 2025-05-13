@@ -60,6 +60,7 @@ export default function TaskBoard() {
     const taskIndex = tasks.findIndex((t) => t.id == taskId);
     const newTask = [...tasks];
     newTask[taskIndex].isFavourite = !newTask[taskIndex].isFavourite;
+    setTasks(newTask);
   };
   const handleSearch = (searchTerm) => {
     const filttered = tasks.filter((task) => {
